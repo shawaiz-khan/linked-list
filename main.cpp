@@ -48,7 +48,7 @@ void displayList(Node* head) {
 void deleteAtEnd(Node*& head) {
     if (head == NULL) {
         cout << "List is empty" << endl;
-    } else if (head->next == NULL) {
+    } else if (head -> next == NULL) {
         delete head;
         head = NULL;
     } else {
@@ -74,6 +74,16 @@ int main() {
 
     insertAtEnd(head, 20);
     displayList(head);
+
+    deleteAtEnd(head);
+    displayList(head);
+
+    insertAtEnd(head, 40);
+    displayList(head);
+
+    insertAtEnd(head, 50);
+    displayList(head);
+    
     deleteAtEnd(head);
     displayList(head);
 

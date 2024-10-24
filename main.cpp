@@ -18,7 +18,7 @@ Node* createNode(int data) {
     return newNode;
 }
 
-void insertAtEnd(Node*& head, int data){
+void insertAtEnd(Node*& head, int data) {
     Node* newNode = createNode(data);
     
     if (head == NULL) {
@@ -32,29 +32,50 @@ void insertAtEnd(Node*& head, int data){
     }
 }
 
-// Delete
-
-void displayList(Node*& head) {
-    Node* temp = head;
-    while(temp -> next != NULL) {
-        temp = temp -> next;
+void displayList(Node* head) {
+    if (head == NULL) {
+        cout << "List is empty" << endl;
+    } else {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp -> data << " -> ";
+            temp = temp -> next;
+        }
+        cout << "NULL" << endl;
     }
-    cout << temp -> data;
+}
+
+void deleteAtEnd(Node*& head) {
+    if (head == NULL) {
+        cout << "List is empty" << endl;
+    } else if (head->next == NULL) {
+        delete head;
+        head = NULL;
+    } else {
+        Node* temp = head;
+        while (temp -> next -> next != NULL) {
+            temp = temp -> next;
+        }
+        delete temp -> next;
+        temp -> next = NULL;
+    }
 }
 
 int main() {
-    Node* head;
+    Node* head = NULL;
     Node* one = NULL;
-    
+
     one = new Node();
     one -> data = 10;
     one -> key = 0;
     one -> next = NULL;
 
     head = one;
-    insertAtEnd(head, 20);
 
-    // displayList(head);
+    insertAtEnd(head, 20);
+    displayList(head);
+    deleteAtEnd(head);
+    displayList(head);
 
     return 0;
 }

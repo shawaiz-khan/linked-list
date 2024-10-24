@@ -4,7 +4,7 @@ using namespace std;
 class Node {
     public:
         int data;
-        int key = 0;
+        int key = 0; // Will be using for Specific purpose (in later edit)
         Node* next;
 };
 
@@ -75,15 +75,10 @@ int main() {
     insertAtEnd(head, 20);
     displayList(head);
 
-    deleteAtEnd(head);
-    displayList(head);
-
     insertAtEnd(head, 40);
     displayList(head);
 
     insertAtEnd(head, 50);
-    displayList(head);
-    
     deleteAtEnd(head);
     displayList(head);
 

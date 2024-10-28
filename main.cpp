@@ -70,6 +70,42 @@ void deleteAtEnd(Node*& head) {
     }
 }
 
+void deleteByKey(Node*& head) {
+    int choice;
+    cout << "Enter key: ";
+    cin >> choice;
+
+    if (head == NULL) {
+        cout << "List is empty." << endl;
+        return;
+    }
+
+    if (head -> key == choice) {
+        Node* temp = head;
+        head = head -> next;
+        delete temp;
+        cout << "Deleted head node with key " << choice << endl;
+        return;
+    }
+
+    Node* current = head;
+    Node* previous = NULL;
+
+    while (current != NULL && current -> key != choice) {
+        previous = current;
+        current = current -> next;
+    }
+
+    if (current == NULL) {
+        cout << "Key not found." << endl;
+        return;
+    }
+
+    previous -> next = current -> next;
+    cout << "Deleted node with key " << choice << endl;
+    delete current;
+}
+
 int main() {
     Node* head = NULL;
     Node* one = NULL;
@@ -84,6 +120,9 @@ int main() {
     insertAtEnd(head, 20);
     insertAtEnd(head, 30);
     insertAtEnd(head, 40);
+    displayList(head);
+
+    deleteByKey(head);
     displayList(head);
 
     return 0;

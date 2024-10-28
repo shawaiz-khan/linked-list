@@ -1,19 +1,28 @@
 #include <iostream>
 using namespace std;
 
+int key = 0;
+
 class Node {
     public:
         int data;
-        int key = 0; // Will be using for Specific purpose (in later edit)
+        int key = key; // Will be using for Specific purpose (in later edit)
         Node* next;
 };
+
+int generateKey() {
+    key++;
+    return key;
+}
 
 Node* createNode(int data) {
     Node* newNode = NULL;
     newNode = new Node();
+    int newKey = generateKey();
 
     newNode -> data = data;
     newNode -> next = NULL;
+    newNode -> key = newKey;
 
     return newNode;
 }
@@ -38,7 +47,7 @@ void displayList(Node* head) {
     } else {
         Node* temp = head;
         while (temp != NULL) {
-            cout << temp -> data << " -> ";
+            cout << "|" << temp -> key << "|" << temp -> data << "|" << " -> ";
             temp = temp -> next;
         }
         cout << "NULL" << endl;
@@ -73,13 +82,8 @@ int main() {
     head = one;
 
     insertAtEnd(head, 20);
-    displayList(head);
-
+    insertAtEnd(head, 30);
     insertAtEnd(head, 40);
-    displayList(head);
-
-    insertAtEnd(head, 50);
-    deleteAtEnd(head);
     displayList(head);
 
     return 0;
